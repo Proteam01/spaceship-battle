@@ -150,10 +150,10 @@ def main():
 
         winner_text = ""
         if red_health <= 0:
-            winner_text = "CHARLY WINS!"
+            winner_text = "YELLOW WINS!"
 
         if yellow_health <= 0:
-            winner_text = "MARTHA WINS!"
+            winner_text = "RED WINS!"
 
         if winner_text != "":
             draw_winner(winner_text)
