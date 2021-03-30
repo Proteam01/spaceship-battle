@@ -2,7 +2,7 @@
 
 ## how to run:
 
-	install python (www.python.org)[www.python.org]
+	install python [www.python.org](www.python.org)
 
 - run pip install
 
