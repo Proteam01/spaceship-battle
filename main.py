@@ -9,7 +9,7 @@ WIDTH, HEIGHT = 900, 500
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Spaceship Battle')
 
-BORDER = pygame.Rect(WIDTH/2-5, 0, 10, HEIGHT)
+BORDER = pygame.Rect(WIDTH / 2 - 5, 0, 10, HEIGHT)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
@@ -47,14 +47,12 @@ SPACE = pygame.transform.scale(
     (WIDTH, HEIGHT))
 
 
-
-
-def draw_window(red, yellow, red_bullets, yellow_bullets,red_health,yellow_health):
+def draw_window(red, yellow, red_bullets, yellow_bullets, red_health, yellow_health):
     # WIN.fill(WHITE)
     WIN.blit(SPACE, (0, 0))
     pygame.draw.rect(WIN, BLACK, BORDER)
-    red_health_text = HEALTH_FONT.render(f'Health: {red_health}', 1, WHITE)
-    yellow_health_text = HEALTH_FONT.render(f'Health: {yellow_health}', 1 , WHITE)
+    red_health_text = HEALTH_FONT.render(f'Health: {red_health}', True, WHITE)
+    yellow_health_text = HEALTH_FONT.render(f'Health: {yellow_health}', True, WHITE)
     WIN.blit(red_health_text, (WIDTH - red_health_text.get_width() - 10, 10))
     WIN.blit(yellow_health_text, (10, 10))
     WIN.blit(YELLOW_SPACESHIP, (yellow.x, yellow.y))
@@ -80,17 +78,17 @@ def yellow_handle_movement(keys_pressed, yellow):
 
 
 def red_handle_movement(keys_pressed, red):
-    if keys_pressed[pygame.K_LEFT] and red.x - VEL > BORDER.x+10:
+    if keys_pressed[pygame.K_LEFT] and red.x - VEL > BORDER.x + 10:
         red.x -= VEL
     if keys_pressed[pygame.K_RIGHT] and red.x + VEL + red.width < WIDTH + 20:
         red.x += VEL
-    if keys_pressed[pygame.K_DOWN] and red.y + VEL + red.height < HEIGHT-10:
+    if keys_pressed[pygame.K_DOWN] and red.y + VEL + red.height < HEIGHT - 10:
         red.y += VEL
     if keys_pressed[pygame.K_UP] and red.y + VEL > 10:
         red.y -= VEL
 
 
-def handle_bullets( yellow, red, yellow_bullets, red_bullets):
+def handle_bullets(yellow, red, yellow_bullets, red_bullets):
     for bullet in yellow_bullets:
         bullet.x += BULLET_VEL
         if red.colliderect(bullet):
@@ -110,9 +108,9 @@ def handle_bullets( yellow, red, yellow_bullets, red_bullets):
 
 def draw_winner(text):
     # DIE_SCREAM.play()
-    winner_text = WINNER_FONT.render(text, 1, WHITE)
+    winner_text = WINNER_FONT.render(text, True, WHITE)
     WIN.blit(winner_text,
-             (WIDTH//2 - winner_text.get_width()//2, HEIGHT//2 - winner_text.get_height()//2))
+             (WIDTH // 2 - winner_text.get_width() // 2, HEIGHT // 2 - winner_text.get_height() // 2))
     pygame.display.update()
     pygame.time.delay(5000)
 
@@ -134,7 +132,7 @@ def main():
                 pygame.quit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LCTRL and len(yellow_bullets) < MAX_BULLETS:
-                    bullet = pygame.Rect(yellow.x + yellow.width, yellow.y + yellow.height//2 - 2, 10, 5)
+                    bullet = pygame.Rect(yellow.x + yellow.width, yellow.y + yellow.height // 2 - 2, 10, 5)
                     yellow_bullets.append(bullet)
                     BULLET_FIRE.play()
                 if event.key == pygame.K_RCTRL and len(red_bullets) < MAX_BULLETS:
@@ -165,7 +163,7 @@ def main():
         yellow_handle_movement(keys_pressed, yellow)
         red_handle_movement(keys_pressed, red)
         handle_bullets(yellow, red, yellow_bullets, red_bullets)
-        draw_window(red, yellow, yellow_bullets, red_bullets,red_health,yellow_health)
+        draw_window(red, yellow, yellow_bullets, red_bullets, red_health, yellow_health)
 
     main()
     # pygame.quit()
