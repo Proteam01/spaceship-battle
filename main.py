@@ -24,6 +24,7 @@ RED_HIT = pygame.USEREVENT + 2
 
 BULLET_FIRE = pygame.mixer.Sound(os.path.join('Assets', 'gun_silencer.mp3'))
 BULLET_HIT = pygame.mixer.Sound(os.path.join('Assets', 'grenade_1.mp3'))
+DIE_SCREAM = pygame.mixer.Sound(os.path.join('Assets', 'scream2.mp3'))
 
 HEALTH_FONT = pygame.font.SysFont('comicsans', 40)
 WINNER_FONT = pygame.font.SysFont('comicsans', 100)
@@ -108,6 +109,7 @@ def handle_bullets( yellow, red, yellow_bullets, red_bullets):
 
 
 def draw_winner(text):
+    DIE_SCREAM.play()
     winner_text = WINNER_FONT.render(text, 1, WHITE)
     WIN.blit(winner_text,
              (WIDTH//2 - winner_text.get_width()//2, HEIGHT//2 - winner_text.get_height()//2))
